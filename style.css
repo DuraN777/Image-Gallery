@@ -14,3 +14,63 @@ ol {
 body {
   font-family: "Poppins", Courier, monospace;
 }
+
+/* Search section */
+.search {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  min-height: 40vh;
+}
+
+.search__img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.search__content {
+  z-index: 2;
+  padding: 0 50px;
+  color: #fff;
+  text-align: center;
+  position: relative;
+}
+
+.search__content-title {
+  font-size: 2.6rem;
+  font-weight: 600;
+}
+
+.search__content-text {
+  font-size: 1.5rem;
+  margin-top: 8px;
+}
+
+.search__box {
+  height: 50px;
+  margin: 40px 0;
+  position: relative;
+}
+
+.search__box-input {
+  max-width: 625px;
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  padding-left: 50px;
+}
+
+.search__box-icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: black;
+  left: 15px;
+  color: #8d8d8d;
+  font-size: 1.25rem;
+}
