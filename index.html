@@ -12,6 +12,23 @@
   <title>Image Gallery</title>
 </head>
 <body>
-  
+  <section class="search">
+    <img src="images/search-img.jpg" alt="Zoomed in laptop keypad" class="search__img">
+    <div class="search__content">
+      <h1 class="search__content-title">Image Gallery with javascript</h1>
+      <p class="search__content-text">Search and download any images within a second</p>
+      <div class="search__box">
+        <i class="search__box-icon fa-solid fa-magnifying-glass"></i>
+        <input type="text" placeholder="Searh Images" class="search__box-input js-search-input">
+      </div>
+    </div>
+  </section>
+  <section class="gallery">
+    <h2 class="gallery__warning">We are sorry, currently we dont have any photo with that description or attribute. </br>
+      Please search for something else.
+    </h2>
+    <ul class="gallery__images js-gallery"></ul>
+    <button class="gallery__load-more">Load More</button>
+  </section>
 </body>
 </html>
