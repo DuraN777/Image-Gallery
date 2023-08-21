@@ -1,6 +1,7 @@
 const imagesUl = document.querySelector(".js-gallery");
 const loadMoreBtn = document.querySelector(".js-load-more");
 const searchInput = document.querySelector(".js-search-input");
+const galleryWarning = document.querySelector(".js-gallery-warning");
 
 // Api key, pagination and search term
 const apiKey = "1r9j7JOFGQW3Du7gtMlApqAAaLJorBuQCZz6kmS70Has7vpKpBNzUejm";
@@ -19,6 +20,14 @@ function getImages(apiURL) {
     return res.json();
   })
   .then(data => {
+    if(data.photos.length === 0) {
+      galleryWarning.style.display = "block";
+      loadMoreBtn.style.display = "none";
+    }
+    else {
+      galleryWarning.style.display = "none";
+      loadMoreBtn.style.display = "block";
+    }
     generateHTML(data.photos);
   })
   .catch(err => console.log("Something went wrong", "\n" + err))
