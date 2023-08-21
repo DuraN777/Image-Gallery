@@ -11,6 +11,11 @@ ol {
   list-style: none;;
 }
 
+button {
+  border: none;
+  outline: none;
+}
+
 body {
   font-family: "Poppins", Courier, monospace;
 }
@@ -19,6 +24,7 @@ body {
 .search {
   display: flex;
   position: relative;
+  margin-bottom: 40px;
   align-items: center;
   justify-content: center;
   min-height: 40vh;
@@ -75,6 +81,76 @@ body {
   font-size: 1.25rem;
 }
 
+/* Gallery section */
+.gallery {
+  padding: 0 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.gallery__warning{
+  text-align: center;
+  display: none;
+}
+
+.gallery__cards {
+  columns: 5 340px;
+  gap: 20px;
+}
+
+.gallery__card {
+  position: relative;
+  overflow: hidden;
+}
+
 .gallery__card-img {
   width: 100%;
+  border-radius: 20px;
+}
+
+.gallery__card-details {
+  position: absolute;
+  /* overflow hidden on parent */
+  bottom: -100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 15px 20px;
+  transition: bottom 0.2s ease;
+}
+
+.gallery__card:hover .gallery__card-details {
+  bottom: 0;
+}
+
+.gallery__card-content {
+  color:#fff;
+}
+
+.gallery__card-content i {
+  font-size: 1.4rem;
+  margin-right: 10px;
+}
+
+.gallery__card-photographer {
+  font-size: 1.05rem;
+}
+
+.gallery__card-btn {
+  cursor: pointer;
+  padding: 3px 5px;
+  font-size: 1.2rem;
+}
+
+.gallery__load-more {
+  margin: 50px 0;
+  padding: 12px 25px;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  font-family: inherit;
+  color: #fff;
+  background-color: #8a6cff;
+  cursor: pointer;
 }
