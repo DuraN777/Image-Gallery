@@ -1,7 +1,8 @@
 const imagesUl = document.querySelector(".js-gallery");
+const loadMoreBtn = document.querySelector(".js-load-more")
 
 // Api key, pagination
-const apiKey = '1r9j7JOFGQW3Du7gtMlApqAAaLJorBuQCZz6kmS70Has7vpKpBNzUejm';
+const apiKey = "1r9j7JOFGQW3Du7gtMlApqAAaLJorBuQCZz6kmS70Has7vpKpBNzUejm";
 const perPage = 15;
 let currentPage = 1;
 
@@ -40,4 +41,11 @@ function generateHTML(images) {
 ).join("")
 }
 
+function loadMoreImages() {
+  currentPage++;
+  let apiURl = `https://api.pexels.com/v1/curated?page=${currentPage}&per_page=${perPage}`;
+  getImages(apiURl);
+}
+
 getImages(`https://api.pexels.com/v1/curated?page=${currentPage}&per_page=${perPage}`);
+loadMoreBtn.addEventListener("click", loadMoreImages);
