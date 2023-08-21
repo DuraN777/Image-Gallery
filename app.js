@@ -1,10 +1,12 @@
 const imagesUl = document.querySelector(".js-gallery");
-const loadMoreBtn = document.querySelector(".js-load-more")
+const loadMoreBtn = document.querySelector(".js-load-more");
+const searchInput = document.querySelector(".js-search-input");
 
-// Api key, pagination
+// Api key, pagination and search term
 const apiKey = "1r9j7JOFGQW3Du7gtMlApqAAaLJorBuQCZz6kmS70Has7vpKpBNzUejm";
 const perPage = 15;
 let currentPage = 1;
+let searchTerm = null;
 
 function getImages(apiURL) {
   fetch(apiURL, {
@@ -47,5 +49,18 @@ function loadMoreImages() {
   getImages(apiURl);
 }
 
+function loadSearchImages(e) {
+  // After search input is entered, update current page, searchTerm and call the getImages()
+  if(e.target.value === "") return searchTerm = null;
+  if(e.key === "Enter") {
+    currentPage = 1;
+    searchTerm = e.target.value;
+    imagesUl.innerHTML = "";
+    getImages(`https://api.pexels.com/v1/search?query=${searchTerm}&page=${currentPage}&per_page=${perPage}`);
+    searchInput.value = "";
+  }
+}
+
 getImages(`https://api.pexels.com/v1/curated?page=${currentPage}&per_page=${perPage}`);
 loadMoreBtn.addEventListener("click", loadMoreImages);
+searchInput.addEventListener("keyup", loadSearchImages);
