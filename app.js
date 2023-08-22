@@ -73,6 +73,7 @@ function loadSearchImages(e) {
 
 function showLightbox(name, img) {
   lightBox.querySelector(".lightbox__card-photographer").innerText = name;
+  lightBox.querySelector(".lightbox__img").src = img;
 }
 
 getImages(`https://api.pexels.com/v1/curated?page=${currentPage}&per_page=${perPage}`);
