@@ -2,6 +2,7 @@ const imagesUl = document.querySelector(".js-gallery");
 const loadMoreBtn = document.querySelector(".js-load-more");
 const searchInput = document.querySelector(".js-search-input");
 const galleryWarning = document.querySelector(".js-gallery-warning");
+const lightBox = document.querySelector('.js-lightbox');
 
 // Api key, pagination and search term
 const apiKey = "1r9j7JOFGQW3Du7gtMlApqAAaLJorBuQCZz6kmS70Has7vpKpBNzUejm";
@@ -37,7 +38,7 @@ function generateHTML(images) {
   //Making <li> of all fetched images and adding them to existing <ul> gallery
   console.log(images)
   imagesUl.innerHTML += images.map((img) => 
-  `<li class="gallery__card">
+  `<li class="gallery__card" onclick="showLightbox('${img.photographer}', '${img.src.large2x}')">
     <img class="gallery__card-img" src="${img.src.large2x}" alt="${img.alt}">
     <div class="gallery__card-details">
       <div class="gallery__card-content">
@@ -68,6 +69,10 @@ function loadSearchImages(e) {
     getImages(`https://api.pexels.com/v1/search?query=${searchTerm}&page=${currentPage}&per_page=${perPage}`);
     searchInput.value = "";
   }
+}
+
+function showLightbox(name, img) {
+  lightBox.querySelector(".lightbox__card-photographer").innerText = name;
 }
 
 getImages(`https://api.pexels.com/v1/curated?page=${currentPage}&per_page=${perPage}`);
