@@ -2,7 +2,8 @@ const imagesUl = document.querySelector(".js-gallery");
 const loadMoreBtn = document.querySelector(".js-load-more");
 const searchInput = document.querySelector(".js-search-input");
 const galleryWarning = document.querySelector(".js-gallery-warning");
-const lightBox = document.querySelector('.js-lightbox');
+const lightBox = document.querySelector(".js-lightbox");
+const closeLightbox = document.querySelector(".js-close-lightbox");
 
 // Api key, pagination and search term
 const apiKey = "1r9j7JOFGQW3Du7gtMlApqAAaLJorBuQCZz6kmS70Has7vpKpBNzUejm";
@@ -74,10 +75,16 @@ function loadSearchImages(e) {
 function showLightbox(name, img) {
   lightBox.querySelector(".lightbox__card-photographer").innerText = name;
   lightBox.querySelector(".lightbox__img").src = img;
-  lightBox.classList.add('show');
+  lightBox.classList.add("show");
   document.body.style.overflow = "hidden";
+}
+
+function hideLightbox() {
+  lightBox.classList.remove("show");
+  document.body.style.overflow = "auto";
 }
 
 getImages(`https://api.pexels.com/v1/curated?page=${currentPage}&per_page=${perPage}`);
 loadMoreBtn.addEventListener("click", loadMoreImages);
 searchInput.addEventListener("keyup", loadSearchImages);
+closeLightbox.addEventListener("click", hideLightbox);
