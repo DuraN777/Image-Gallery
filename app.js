@@ -4,6 +4,7 @@ const searchInput = document.querySelector(".js-search-input");
 const galleryWarning = document.querySelector(".js-gallery-warning");
 const lightBox = document.querySelector(".js-lightbox");
 const closeLightbox = document.querySelector(".js-close-lightbox");
+const downloadImgBtn = lightBox.querySelector(".js-download-img");
 
 // Api key, pagination and search term
 const apiKey = "1r9j7JOFGQW3Du7gtMlApqAAaLJorBuQCZz6kmS70Has7vpKpBNzUejm";
@@ -76,6 +77,8 @@ function showLightbox(name, img) {
   lightBox.querySelector(".lightbox__img").src = img;
   lightBox.classList.add("show");
   document.body.style.overflow = "hidden";
+  // Set img URL as a dataset atribute to be able to download it in lightbox
+  downloadImgBtn.setAttribute("data-img", img);
 }
 
 function hideLightbox() {
@@ -103,3 +106,6 @@ getImages(`https://api.pexels.com/v1/curated?page=${currentPage}&per_page=${perP
 loadMoreBtn.addEventListener("click", loadMoreImages);
 searchInput.addEventListener("keyup", loadSearchImages);
 closeLightbox.addEventListener("click", hideLightbox);
+downloadImgBtn.addEventListener("click", (e) => {
+  downloadImg(e.target.dataset.img);
+})
