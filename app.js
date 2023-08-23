@@ -12,6 +12,15 @@ const perPage = 15;
 let currentPage = 1;
 let searchTerm = null;
 
+getImages(`https://api.pexels.com/v1/curated?page=${currentPage}&per_page=${perPage}`);
+loadMoreBtn.addEventListener("click", loadMoreImages);
+searchInput.addEventListener("keyup", loadSearchImages);
+closeLightbox.addEventListener("click", hideLightbox);
+downloadImgBtn.addEventListener("click", (e) => {
+  downloadImg(e.target.dataset.img);
+})
+
+// Functions
 function getImages(apiURL) {
   fetch(apiURL, {
     headers: {Authorization: apiKey}
@@ -92,7 +101,6 @@ function downloadImg (imgURL) {
   fetch(imgURL)
   .then(res => res.blob())
   .then(data => {
-    console.log(data);
     const a = document.createElement("a");
     a.href = URL.createObjectURL(data);
     a.download = new Date().getTime(); // name for downloaded image
@@ -100,12 +108,3 @@ function downloadImg (imgURL) {
   })
   .catch(err => console.log("Failed to download image! " + err));
 }
-
-
-getImages(`https://api.pexels.com/v1/curated?page=${currentPage}&per_page=${perPage}`);
-loadMoreBtn.addEventListener("click", loadMoreImages);
-searchInput.addEventListener("keyup", loadSearchImages);
-closeLightbox.addEventListener("click", hideLightbox);
-downloadImgBtn.addEventListener("click", (e) => {
-  downloadImg(e.target.dataset.img);
-})
